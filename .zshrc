@@ -71,9 +71,8 @@ ZSH_THEME="juanghurtado"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git 
+  git
   zsh-syntax-highlighting
-  fast-syntax-highlighting
   thefuck
   zsh-autosuggestions
   colorize
@@ -107,13 +106,14 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
-# Aliases
- alias update="yay -Syu && flatpak update"
- alias pacman="sudo pacman"
- alias bootctl="sudo bootctl"
-alias mpv="prime-run mpv"
-# Run commands
-hyfetch
+# Example aliases
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias fetch="hyfetch"
+alias update="paru -Syu && flatpak update"
+alias ct="echo mp4 to mov: ffmpeg -i input_file.mp4 -f mov output_file.mov &&
+echo 0x0.st command: curl -F'file=@/path/to/file' https://0x0.st"
+alias ffmpreg="ffmpeg"
 # mommy /i really need this okay, don't judge me...
 set -o PROMPT_SUBST
 RPS1='$(mommy -1 -s $?)'
