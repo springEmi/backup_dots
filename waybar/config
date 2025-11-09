@@ -1,0 +1,102 @@
+{
+    "position": "top",
+    //"height": 30,
+    "width": 1300,
+    "modules-left": ["hyprland/window"],
+    "modules-center": ["hyprland/workspaces","cpu","memory", "clock", "pulseaudio", "network","custom/date", "battery", "tray","custom/exit"],
+    "modules-right": ["custom/player"],
+    // Modules configuration
+    "hyprland/language": {
+		"format": "{short}"
+    },
+	 "hyprland/workspaces" : {
+        "on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "format": "{}",
+        "format-icons": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+        },
+        "persistent-workspaces": {
+             "*": 3
+        }
+    },
+	"tray": {
+        "icon-size": 14,
+        "spacing": 10
+    },
+	"custom/date": {
+    		"format": "󰸗 {}",
+		"interval": 3600,
+		"exec": "$HOME/bin/waybar-date.sh"
+	},
+	"custom/exit": {
+        "format": "",
+        "tooltip-format": "Power Menu",
+        "on-click": "wlogout",
+        "tooltip": true
+    },
+    //"custom/settings": {
+    //    "format": "",
+    //    "on-click": "rofimenu_systemsettings",
+    //    "tooltip-format": "Settings"
+    //},
+    "custom/player": {
+        "exec": "python3 ~/.config/waybar/custom/mediaplayer.py",
+        "format": "{}",
+        "max-length": 25 ,
+        "return-type": "json",
+        "on-click-middle": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click": "playerctl previous"
+    },
+	"clock": {
+        "timezone": "Europe/Warsaw",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": " {:%H:%M}",
+        "format-alt": " {:%d-%m-%Y}"
+    },
+	"network": {
+        	"format-wifi": " {signalStrength}%",
+        	"format-ethernet": " 100%",
+        	"format-linked": "{ifname} (No IP) ",
+        	"format-disconnected": "Disconnected",
+		"tooltip-format-wifi": " {essid} | Signal Strength: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
+			"on-click": "kitty -e nmtui",
+			"max-length": 10,
+        "tooltip-format-ethernet": " {ipaddr} | Signal Strength: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}",
+			"on-click": "kitty -e nmtui",
+			"max-length": 20
+	},
+	"pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}{volume}%",
+        "format-bluetooth": "{icon}{volume}%",
+        //"format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "{icon}{volume}%",
+        //"format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "{format_source}",
+        "format-source": " MUTE%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["",""," "]
+        },
+        "on-click": "pavucontrol"
+    },
+    "memory": {
+        "format": " {}%",
+        "on-click": "kitty -e btop"
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "on-click":  "kitty -e btop"
+    }
+}
